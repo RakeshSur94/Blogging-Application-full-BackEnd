@@ -8,16 +8,18 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class UserDto {
 	private Integer user_id;
 	@NotEmpty(message = "UserName ShouldNot be blanked")
 	@Size(max = 15 ,min = 5, message = "Name shoud be min 5 char and maximum 15 char")
 	private String user_name;
-	@Size(min = 5,max = 10, message = "Password must be with in 5 to 10 chracter")
+	@Size(min = 5,max = 18, message = "Email must be with in 5 to 10 chracter")
 	@Email(message="Please provide a valid email address")
 	@Pattern(regexp="[A-Za-z0-9._%-+]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}", message="Please provide a valid email address")
 	@NotEmpty(message = "Email shoud not be blanked")
