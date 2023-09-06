@@ -7,19 +7,19 @@ import com.rakesh.blog.playlods.PostDto;
 
 public interface IPostService {
 	//save post
-	public PostDto createPost(PostDto postDto,Integer userId,Integer catId);
+	public PostDto createPost(PostDto postDto,int userId,int catId);
 	//update post
-	public String updatePost(PostDto postDto,Integer postId);
+	public String updatePost(PostDto postDto,int postId);
 	//delete post
-	public String deletePost(Integer postId);
+	public void deletePost(int postId);
 	//get all posts
 	public List<PostDto> getAllPost();
 	//get single post
-	public Post getPostById(Integer postId);
+	public PostDto getPostById(int postId);
 	//get posts by category
-	public List<PostDto> getPostByCategoryId(Integer catId);
+	public List<PostDto> getPostByCategoryId(int catId);
 	//get post by user
-	public List<PostDto> getAllPostByUser(Integer userId);
+	public List<PostDto> getAllPostByUser(int userId);
 	//get post by keyword
 	public List<PostDto> getAllPostByKeyword(String keyword);
 

@@ -1,9 +1,7 @@
 package com.rakesh.blog.model;
 
+import java.io.Serializable;
 import java.util.Date;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
@@ -22,7 +20,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Post {
+public class Post implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer pId;
@@ -33,9 +31,8 @@ public class Post {
 	private String  imageName;
 	private Date date;
 	@ManyToOne
-	@JoinColumn(name="fk_catId")
+	@JoinColumn(name="catId")
 	private Catagory catagory;
-	@JoinColumn(name="fk_userId")
 	@ManyToOne
 	private User user;
 

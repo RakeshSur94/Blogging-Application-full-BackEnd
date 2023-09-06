@@ -18,15 +18,15 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class PostDto {
-	
+	private Integer pId;
 	@NotBlank(message="Title shouldnot be blanked")
 	@Size(max = 50,min=10,message = "title should be greater than 10 char  lessthan or equal to 50 char")
 	private String title;
 	private String content;
 	private String imageName;
 	private Date date;
-	private CategoryDto catagoryDto;
-	private UserDto userDto;
+	private CategoryDto catagory;
+	private UserDto user;
 	
 	
 

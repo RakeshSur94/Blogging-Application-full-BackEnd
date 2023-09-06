@@ -12,9 +12,11 @@ import com.rakesh.blog.model.Catagory;
 public interface IPostRepository extends JpaRepository<Post, Integer> {
 
 	// finder method
-	@Query("select post from User")
-	public List<Post> getByUser(User user);
+	
+	public List<Post> findByUser(User user);
 
 	public List<Post> findByCatagory(Catagory catagory);
+	
+	public List<Post> findByTitle(String keyword);
 
 }
