@@ -1,5 +1,6 @@
 package com.rakesh.blog.service;
 
+
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -7,6 +8,11 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.rakesh.blog.exception.ResourceNotFoundException;
@@ -14,6 +20,7 @@ import com.rakesh.blog.model.Catagory;
 import com.rakesh.blog.model.Post;
 import com.rakesh.blog.model.User;
 import com.rakesh.blog.playlods.PostDto;
+import com.rakesh.blog.playlods.PostResponse;
 import com.rakesh.blog.repository.ICategoryRepository;
 import com.rakesh.blog.repository.IPostRepository;
 import com.rakesh.blog.repository.IUserRepository;
@@ -74,6 +81,33 @@ public class PostServiceImpl implements IPostService {
 		List<PostDto>finalPost=allPost.stream().map(result->mapper.map(result, PostDto.class)).collect(Collectors.toList());
 		return finalPost;
 	}
+	@Override
+	public PostResponse getAllPostByPage(int pageNumber,int pageSize,String sortBy,String sortDir) {	
+		//check weather the sort is asc or desc
+		Sort sort=sortDir.equalsIgnoreCase("asc")?Sort.by(sortBy).ascending():Sort.by(sortBy).descending();
+		//if(sortDir.equalsIgnoreCase("asc")) {
+		//	sort=Sort.by(sortBy).ascending();
+		//}
+		//else {
+		//	sort=Sort.by(sortBy).descending();
+		//}
+		
+		Pageable pagePost=PageRequest.of(pageNumber, pageSize,sort);
+		Page<Post> allPost=postRepository.findAll(pagePost);
+		List<Post> finalPost=allPost.getContent();
+		List<PostDto>postBypage=finalPost.stream().map(result->mapper.map(result, PostDto.class)).collect(Collectors.toList());
+		
+		PostResponse response=new PostResponse();
+		response.setContent(postBypage);
+		response.setPageNumber(pagePost.getPageNumber());
+		response.setPageSize(pagePost.getPageSize());
+		response.setTotalElements(allPost.getTotalElements());
+		response.setTotalPages(allPost.getTotalPages());
+		response.setLastPage(allPost.isLast());
+		
+		return response;
+		
+	}
 
 	@Override
 	public PostDto getPostById(int postId) {
@@ -93,8 +127,8 @@ public class PostServiceImpl implements IPostService {
 	}
 
 	@Override
-	public List<PostDto> getAllPostByKeyword(String keyword) {
-		List<Post> post=postRepository.findByTitle(keyword);
+	public List<PostDto> getAllPostByKeyword(String title) {
+		List<Post>post=postRepository.findByTitleContaining(title);
 		List<PostDto>result=post.stream().map(results->mapper.map(results, PostDto.class)).collect(Collectors.toList());
 		return result;
 	}

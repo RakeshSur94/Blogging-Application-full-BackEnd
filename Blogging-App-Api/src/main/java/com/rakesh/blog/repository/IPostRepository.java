@@ -1,6 +1,7 @@
 package com.rakesh.blog.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,7 +17,7 @@ public interface IPostRepository extends JpaRepository<Post, Integer> {
 	public List<Post> findByUser(User user);
 
 	public List<Post> findByCatagory(Catagory catagory);
-	
-	public List<Post> findByTitle(String keyword);
+	//@Query(value = "FROM Post where title=:keyword")
+	public List<Post> findByTitleContaining(String keyword);
 
 }

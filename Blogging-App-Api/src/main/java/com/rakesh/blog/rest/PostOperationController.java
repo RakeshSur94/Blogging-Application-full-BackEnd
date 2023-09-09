@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rakesh.blog.playlods.ApiResponse;
 import com.rakesh.blog.playlods.PostDto;
+import com.rakesh.blog.playlods.PostResponse;
 import com.rakesh.blog.service.IPostService;
 
 @RestController
@@ -47,30 +49,45 @@ public class PostOperationController {
 		return new ResponseEntity<List<PostDto>>(postService.getPostByCategoryId(catId), HttpStatus.OK);
 
 	}
-	@GetMapping("/findby/{keyword}")
-	public ResponseEntity<?> getPostBykeyword(@PathVariable("keyword")String keyword){
+
+	@GetMapping("/post/search/{keyword}")
+	public ResponseEntity<?> getPostByTitle(@PathVariable("keyword") String keyword) {
 		return new ResponseEntity<List<PostDto>>(postService.getAllPostByKeyword(keyword), HttpStatus.OK);
 	}
-	//get all post
+
+	// get all post
 	@GetMapping("/all/post")
-	public ResponseEntity<?> fetchAllPost(){
+	public ResponseEntity<?> fetchAllPost() {
 		return new ResponseEntity<List<PostDto>>(postService.getAllPost(), HttpStatus.OK);
 	}
+
+	// get all post
+	@GetMapping("/all")
+	public ResponseEntity<?> fetchAllPostByPage(
+			@RequestParam(value = "pageNumber", defaultValue = "0", required = false) int pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = "5", required = false) int pageSize,
+			@RequestParam(value = "sortBy", defaultValue = "pId", required = false) String sortBy,
+	      @RequestParam(value = "sortDir", defaultValue = "asc", required = false) String sortDir){
+		return new ResponseEntity<PostResponse>(postService.getAllPostByPage(pageNumber, pageSize, sortBy, sortDir),
+				HttpStatus.OK);
+	}
+
 	@GetMapping("/post/{postId}")
-	public ResponseEntity<?> fetchPostById(@PathVariable("postId")int postId){
+	public ResponseEntity<?> fetchPostById(@PathVariable("postId") int postId) {
 		return new ResponseEntity<PostDto>(postService.getPostById(postId), HttpStatus.OK);
 	}
-	//update Post
+
+	// update Post
 	@PutMapping("/update/{postId}")
-	public ResponseEntity<?> updatePost(@RequestBody PostDto postDto,@PathVariable("postId")int postId){
+	public ResponseEntity<?> updatePost(@RequestBody PostDto postDto, @PathVariable("postId") int postId) {
 		return new ResponseEntity<String>(postService.updatePost(postDto, postId), HttpStatus.CREATED);
 	}
-	
+
 	@DeleteMapping("/deletePost/{postId}")
-	public ApiResponse removePostById(@PathVariable("postId")int postId){
+	public ApiResponse removePostById(@PathVariable("postId") int postId) {
 		postService.deletePost(postId);
 		return new ApiResponse("Post Sucessfully deleted", true);
-		
+
 	}
 
 }
