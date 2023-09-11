@@ -29,6 +29,8 @@ public class User implements Serializable {
 	private String about;
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Post>post=new ArrayList<>();
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private List<Comment>userComment=new ArrayList<>();
 	
 
 }

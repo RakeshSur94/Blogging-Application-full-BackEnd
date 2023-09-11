@@ -61,6 +61,7 @@ public class PostServiceImpl implements IPostService {
 			Post post = opt.get();
 			post.setTitle(postDto.getTitle());
 			post.setContent(postDto.getContent());
+			post.setImageName(postDto.getImageName());
 			 postRepository.save(post);
 			 PostDto updated=mapper.map(post, PostDto.class);;
 			return "post updated with id " + updated.getPId();

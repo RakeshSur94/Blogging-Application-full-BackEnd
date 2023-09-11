@@ -1,5 +1,10 @@
 package com.rakesh.blog.playlods;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.rakesh.blog.model.Comment;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -31,5 +36,6 @@ public class UserDto {
 	private String password;
 	@NotNull
 	private String about;
+	//private List<CommentDto>userComment=new ArrayList<>();
 
 }

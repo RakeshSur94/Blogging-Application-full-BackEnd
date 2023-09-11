@@ -1,8 +1,11 @@
 package com.rakesh.blog.playlods;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.rakesh.blog.model.Catagory;
+import com.rakesh.blog.model.Comment;
 import com.rakesh.blog.model.User;
 
 import jakarta.persistence.JoinColumn;
@@ -27,6 +30,7 @@ public class PostDto {
 	private Date date;
 	private CategoryDto catagory;
 	private UserDto user;
+	private Set<CommentDto>comment=new HashSet<>();
 	
 	
 
