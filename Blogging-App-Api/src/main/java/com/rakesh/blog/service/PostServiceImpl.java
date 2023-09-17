@@ -20,10 +20,10 @@ import com.rakesh.blog.model.Catagory;
 import com.rakesh.blog.model.Post;
 import com.rakesh.blog.model.User;
 import com.rakesh.blog.playlods.PostDto;
-import com.rakesh.blog.playlods.PostResponse;
 import com.rakesh.blog.repository.ICategoryRepository;
 import com.rakesh.blog.repository.IPostRepository;
 import com.rakesh.blog.repository.IUserRepository;
+import com.rakesh.blog.security.PostResponse;
 
 @Service("postService")
 public class PostServiceImpl implements IPostService {

@@ -5,6 +5,7 @@ import java.util.List;
 import com.rakesh.blog.playlods.UserDto;
 
 public interface IUserService {
+	public UserDto registerNewUser(UserDto userDto);
 	public UserDto createUser(UserDto userDto);
 	//public String createUser(UserDto userDto);
 	public List<UserDto> getAllUser();

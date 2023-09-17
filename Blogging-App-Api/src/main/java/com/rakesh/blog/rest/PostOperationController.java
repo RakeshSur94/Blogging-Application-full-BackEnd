@@ -25,14 +25,18 @@ import org.springframework.web.multipart.MultipartFile;
 import com.rakesh.blog.config.AppConstant;
 import com.rakesh.blog.playlods.ApiResponse;
 import com.rakesh.blog.playlods.PostDto;
-import com.rakesh.blog.playlods.PostResponse;
+import com.rakesh.blog.security.PostResponse;
 import com.rakesh.blog.service.IFileOperationService;
 import com.rakesh.blog.service.IPostService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/api/")
+
+@Tag(name = "PostController",description ="Create, update,delete,get Post Api!!!")
 public class PostOperationController {
 
 	@Autowired
@@ -73,7 +77,7 @@ public class PostOperationController {
 
 	// get all post
 	@GetMapping("/all/post")
-	@PreAuthorize("hasAuthority('ROLE_USER')")
+	//@PreAuthorize("hasAuthority('ROLE_USER')")
 	public ResponseEntity<?> fetchAllPost() {
 		return new ResponseEntity<List<PostDto>>(postService.getAllPost(), HttpStatus.OK);
 	}

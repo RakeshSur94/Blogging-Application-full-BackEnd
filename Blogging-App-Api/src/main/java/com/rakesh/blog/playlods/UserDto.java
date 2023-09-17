@@ -1,9 +1,12 @@
 package com.rakesh.blog.playlods;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.rakesh.blog.model.Comment;
+import com.rakesh.blog.model.Role;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
@@ -23,7 +26,7 @@ public class UserDto {
 	private Integer user_id;
 	@NotEmpty(message = "UserName ShouldNot be blanked")
 	@Size(max = 15 ,min = 5, message = "Name shoud be min 5 char and maximum 15 char")
-	private String user_name;
+	private String name;
 	@Size(min = 5,max = 18, message = "Email must be with in 5 to 10 chracter")
 	@Email(message="Please provide a valid email address")
 	@Pattern(regexp="[A-Za-z0-9._%-+]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}", message="Please provide a valid email address")
@@ -37,5 +40,6 @@ public class UserDto {
 	@NotNull
 	private String about;
 	//private List<CommentDto>userComment=new ArrayList<>();
+	private Set<RoleDto> roles = new HashSet<>();
 
 }

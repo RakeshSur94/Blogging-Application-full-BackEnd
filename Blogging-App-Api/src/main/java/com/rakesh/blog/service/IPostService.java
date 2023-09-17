@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.rakesh.blog.model.Post;
 import com.rakesh.blog.playlods.PostDto;
-import com.rakesh.blog.playlods.PostResponse;
+import com.rakesh.blog.security.PostResponse;
 
 public interface IPostService {
 	//save post

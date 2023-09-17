@@ -17,8 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.rakesh.blog.playlods.CategoryDto;
 import com.rakesh.blog.service.ICategoryService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
-@RequestMapping("/api/cat")
+@RequestMapping("/api/cat/")
+@Tag(name = "CategoryController",description ="Create, update,delete,get Category Api!!!")
 public class CategoryController {
 	@Autowired
 	private ICategoryService categoryService;

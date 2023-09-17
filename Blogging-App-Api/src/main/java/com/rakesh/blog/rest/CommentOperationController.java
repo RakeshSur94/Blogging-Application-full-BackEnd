@@ -17,8 +17,12 @@ import com.rakesh.blog.playlods.ApiResponse;
 import com.rakesh.blog.playlods.CommentDto;
 import com.rakesh.blog.service.ICommentService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/api/comment")
+@Tag(name = "CommentController",description ="Create, update,delete,get Comment Api!!!")
 public class CommentOperationController {
 	@Autowired
 	private ICommentService commentService;
