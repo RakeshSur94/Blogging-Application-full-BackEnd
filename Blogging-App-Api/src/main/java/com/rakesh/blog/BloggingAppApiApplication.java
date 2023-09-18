@@ -16,7 +16,6 @@ import com.rakesh.blog.repository.IRoleRepository;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 
 @SpringBootApplication
-//@OpenAPIDefinition
 public class BloggingAppApiApplication implements CommandLineRunner {
 	@Autowired
 	private IRoleRepository roleRepository;

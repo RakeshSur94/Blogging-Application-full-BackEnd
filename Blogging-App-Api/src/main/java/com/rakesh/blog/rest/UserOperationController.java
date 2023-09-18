@@ -35,7 +35,7 @@ public class UserOperationController {
 	
 	//register user
 	@PostMapping("/save")
-	//@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 	@Operation(summary = "Create new User",description = "This is To register new User User APi")
 	                            @ApiResponses(value = {
 	                            		 @ApiResponse(responseCode = "200",description = "sucess !!!"),
@@ -56,7 +56,7 @@ public class UserOperationController {
 	}
 	//delete
 	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
-	//@DeleteMapping("/delete/{userId}")
+	@DeleteMapping("/delete/{userId}")
 	public ResponseEntity<?> deleteUser(@PathVariable("userId") int userId){
 		return new ResponseEntity<String>(userService.deleteUser(userId), HttpStatus.OK);
 		//return new ResponseEntity<ApiResponse>(new ApiResponse("sucessfully deleted.........", true));

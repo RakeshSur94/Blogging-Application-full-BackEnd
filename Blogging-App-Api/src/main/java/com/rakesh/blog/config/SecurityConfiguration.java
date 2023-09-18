@@ -70,9 +70,9 @@ public class SecurityConfiguration {
 				        	   
 //				        	   auth.requestMatchers("/auth/register").permitAll()
 //				        	   .requestMatchers("/auth/login").permitAll()
-				        	   //auth.requestMatchers(PUBLIC_URLS).permitAll()
-				        	  auth .requestMatchers(HttpMethod.GET).permitAll()
-				        	   .requestMatchers(HttpMethod.POST).permitAll()
+				        	   auth.requestMatchers(PUBLIC_URLS).permitAll()
+				        	  .requestMatchers(HttpMethod.GET).permitAll()
+				        	  // .requestMatchers(HttpMethod.POST).permitAll()
 				        	   .anyRequest()
 				        	   //.requestMatchers("/api/**")
 				           	   .authenticated();
